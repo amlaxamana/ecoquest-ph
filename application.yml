@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: ecoquest-backend
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecoquest_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    root: INFO
+    com.ecoquest: DEBUG
+    org.springframework.web: DEBUG
+
+google:
+  cloud:
+    project-id: ${GOOGLE_PROJECT_ID:your-project-id}
+    vision:
+      api-key: ${GOOGLE_VISION_API_KEY:your-api-key}
+
+jwt:
+  secret: ${JWT_SECRET:ecoquest-secret-key-change-in-production}
+  expiration: 86400000
